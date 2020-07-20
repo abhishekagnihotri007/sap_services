@@ -1,7 +1,9 @@
 {
+    "NODE_TLS_REJECT_UNAUTHORIZED": 0,
     "VCAP_SERVICES": {
         "xsuaa": [
             {
+                "NODE_TLS_REJECT_UNAUTHORIZED": 0,
                 "name": "TRP!i9", "label": "xsuaa", "tags": [ "xsuaa" ],
                 "credentials": {
                     "clientid": "sb-TRP!i9",

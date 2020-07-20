@@ -40,11 +40,16 @@ tag: "xsuaa"
 }).uaa));
 //Add Passport JWT processing
 app.use(passport.initialize());
+
+var auth =  passport.authenticate("JWT", {
+  session: true
+  });
+  console.log("auth-------",auth)
 /*
 app.use(
   //xsHDBConn.middleware(hanaOptions.hana),
   passport.authenticate("JWT", {
-  session: false
+  session: true
   })
   );
 */
