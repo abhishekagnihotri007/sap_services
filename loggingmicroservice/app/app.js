@@ -41,10 +41,7 @@ tag: "xsuaa"
 //Add Passport JWT processing
 app.use(passport.initialize());
 
-var auth =  passport.authenticate("JWT", {
-  session: true
-  });
-  console.log("auth-------",auth)
+
 /*
 app.use(
   //xsHDBConn.middleware(hanaOptions.hana),
@@ -53,6 +50,7 @@ app.use(
   })
   );
 */
+
 app.post('/test', passport.authenticate('JWT', { session: false }), (req, res) => {
   res.send('Authenticated');
 });

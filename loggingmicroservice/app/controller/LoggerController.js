@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const logging = require('@sap/logging');
 const AppUtility = require('../util/AppUtility');
+const fs = require("fs");
 
 const apputilObj = new AppUtility();
 
@@ -11,19 +12,23 @@ class LoggerController {
   constructor(reqdata) {
      this.request = reqdata;
      this.appContext = logging.createAppContext({req:reqdata});
-     app.use(logging.middleware({ appContext: this.appContext , logNetwork: true }));
+     app.use(logging.middleware({ appContext: this.appContext,logNetwork:false}));
   }
 
   async  postLogData() {
       try{
-        console.log("log req data from console.");
          
         let servityLevel;
         //var logger = this.appContext.createLogContext({req:this.request});
-        var logger = this.appContext.createLogContext().getLogger('/Application/Network');
-        // console.log("logger obj after  creating log contex...",logger);
+// var logger = this.appContext.createLogContext().getLogger(`/Application/${this.request.body.componentName}`);
+        var logger = this.appContext.createLogContext().getLogger(`/Application/Network`);
+       console.log("logger obj after  creating log contex...",logger);
       //  var tracer = this.appContext.createLogContext().getTracer(__filename);
-      console.log("servity level chk     ",this.request.body.severtiLevel);
+   
+      var access = fs.createWriteStream('customLogs.txt');
+      process.stdout.write = process.stderr.write = access.write.bind(access);
+      process.stdout.pipe(access);
+      
          switch(this.request.body.severtiLevel){
            case 0:
              servityLevel = 'info';
@@ -35,7 +40,9 @@ class LoggerController {
             break;
           case  2 :
             servityLevel = 'error';
-            var infostring =  await logger.error(this.request.body.message);
+           // var infostring =  await logger.error(this.request.body.message);
+            var infostring =  await logger.getLogString(this.request.body.message);  
+           // console.log("info--------",infostring);
             break;
           case  3 :
             servityLevel = 'fatal';  
@@ -48,15 +55,11 @@ class LoggerController {
 
          }
        
-        //console.log("loggerinfo obj/str...",infostring);
-       //  tracer.info('Processing GET request to /demo');
-    
-        let logPacket = `${new Date()}-${this.request.body.applicationName} - ${this.request.body.serviceName} - ${servityLevel}
-                         -  ${this.request.body.message}`;
-        await apputilObj.writeData(logPacket);
+       // await apputilObj.writeData(logPacket);
         return true;
       }catch (err){
        console.log('error  in postLog Data ',err);
+
       }
     
   }

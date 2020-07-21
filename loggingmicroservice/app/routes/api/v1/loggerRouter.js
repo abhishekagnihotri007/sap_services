@@ -7,9 +7,14 @@ module.exports = {
                     try{
 
                     const loogectrlrObj = new LoggerController(req,res);
-                    var postLogResult = await loogectrlrObj.postLogData();
+                    let postLogResult = await loogectrlrObj.postLogData();
 
-                    res.send('log data successfully!');
+                    
+                    prepareResponseObj.success = false;
+                    prepareResponseObj.message = 'message log successfully';
+                    prepareResponseObj.ExceptionMessage = JSON.stringify(err);
+                    prepareResponseObj.status = "200";
+                    res.status(200).json(prepareResponseObj);  
                     }catch(err){
                         console.log(`error occured in logging message...: ${JSON.stringify(err)}`);
                         prepareResponseObj.success = false;

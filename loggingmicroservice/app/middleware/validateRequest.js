@@ -8,8 +8,6 @@ var  prepareResponseObj = require('../resources/response');
 module.exports = {
 
     createLog: function(req, res, next) {
-
-        console.log('Inside Create Log middleware',req.headers['sap-passport']);
        
         try{
             var encodedPassport = req.headers['sap-passport'];
@@ -21,29 +19,25 @@ module.exports = {
             }
             const logSchema = Joi.object().keys({
                 applicationName: Joi.string().required(),
-                serviceName:Joi.string(),
+                componentName:Joi.string(),
                 severtiLevel:Joi.number(),
-                isTrace:Joi.boolean(),
                 message:Joi.string()
             });
             const result = Joi.validate(req.body, logSchema); 
             const { value, error } = result; 
             const valid = error == null; 
             if (!valid) {               
-                console.log('Invalid request body recieved');
                 prepareResponseObj.success = false;
                 prepareResponseObj.message = 'Invalid request param recieved';
                 prepareResponseObj.ExceptionMessage = JSON.stringify(req.body);
                 prepareResponseObj.status = "422";
                 res.status(422).json(prepareResponseObj);
             } else { 
-                console.log('validation rules passsed')
                next();
             } 
-        
             
         } catch (err) {
-               console.log('err' + err);
+             
                prepareResponseObj.success = false;
                prepareResponseObj.message = message.exception;
                prepareResponseObj.ExceptionMessage = JSON.stringify(err);
