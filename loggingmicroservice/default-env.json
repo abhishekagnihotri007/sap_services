@@ -1,8 +1,7 @@
 {
-
     "NODE_TLS_REJECT_UNAUTHORIZED": 0,
-    "USERID": "userid",
-    "USERPASS": "userpass",
+    "USERID": "C5310738",
+    "USERPASS": "Saplab123",
     "VCAP_SERVICES": {
         "xsuaa": [
             {
@@ -15,7 +14,7 @@
                     "xsappname": "sbx-uaa!i9",
                     "identityzone": "uaa",
                     "identityzoneid": "uaa",
-                    "clientsecret": "key-----",
+                    "clientsecret": "PkJXFmUhjrhfXl9/tKd2IQyCfM1H1GTDRg60afILChiCWUgcb+hRHwNjIpx6RlmT4POC9i9XDRCe\ng3dnMEElxw==",
                     "url": "https://gcl0139.wdf.sap.corp:31032/uaa-security"
                 }
             }

@@ -1,1 +1,4 @@
-#2.0#2020 07 21 15:54:05:605#+05:30#ERROR#/Application/supplyDemand#####kcvsj6jp##########kcvsj6jp#PLAIN##logging supply & demad service#
+#2.0#2020 07 22 11:49:07:132#+05:30#INFO#/Application/purple#####kcwz7zss##########kcwz7zss#PLAIN##bluetooth#
+#2.0#2020 07 22 12:04:36:500#+05:30#INFO#/Application/yellow#####kcwzrwwk##########kcwzrwwk#PLAIN##online#
+#2.0#2020 07 22 12:04:59:954#+05:30#WARNING#/LoggingLibrary################PLAIN##Dynamic log level switching not available#
+#2.0#2020 07 22 12:04:59:955#+05:30#INFO#/Application/cyan#####kcwzsf03##########kcwzsf03#PLAIN##virtual#

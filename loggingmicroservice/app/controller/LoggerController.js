@@ -23,7 +23,7 @@ class LoggerController {
        var logger = this.appContext.createLogContext().getLogger(`/Application/${this.request.body.componentName}`);
       
    
-      var access = fs.createWriteStream('customLogs.txt');
+      var access = fs.createWriteStream('customLogs.txt',{flags: 'a'});
       process.stdout.write = process.stderr.write = access.write.bind(access);
       process.stdout.pipe(access);
       
