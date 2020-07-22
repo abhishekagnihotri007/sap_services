@@ -6,13 +6,12 @@ module.exports = {
      postLogData:  async function (req,res){
                     try{
 
-                    const loogectrlrObj = new LoggerController(req,res);
-                    let postLogResult = await loogectrlrObj.postLogData();
+                    const logerctrlrObj = new LoggerController(req,res);
+                    let postLogResult = await logerctrlrObj.postLogData();
 
                     
-                    prepareResponseObj.success = false;
+                    prepareResponseObj.success = true;
                     prepareResponseObj.message = 'message log successfully';
-                    prepareResponseObj.ExceptionMessage = JSON.stringify(err);
                     prepareResponseObj.status = "200";
                     res.status(200).json(prepareResponseObj);  
                     }catch(err){
@@ -25,7 +24,30 @@ module.exports = {
                    }
                 
                 
-        }
+        },
+        getLogData:  async function (req,res){
+          try{
+
+          const logerctrlrObj = new LoggerController(req,res);
+          let postLogResult = await logerctrlrObj.getLogData();
+
+          
+          prepareResponseObj.success = true;
+          prepareResponseObj.message = 'log retrive successfully';
+          prepareResponseObj.data = postLogResult;
+          prepareResponseObj.status = "200";
+          res.status(200).json(prepareResponseObj);  
+          }catch(err){
+              console.log(`error occured in retriving logg message...: ${JSON.stringify(err)}`);
+              prepareResponseObj.success = false;
+              prepareResponseObj.message = 'error occured in  retriving log message';
+              prepareResponseObj.ExceptionMessage = JSON.stringify(err);
+              prepareResponseObj.status = "502";
+              res.status(502).json(prepareResponseObj);    
+         }
+      
+      
+}
 }
 
 

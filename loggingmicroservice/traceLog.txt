@@ -1,0 +1,1 @@
+Jul 21, 2020 04:35:22 PM C:\Users\37639\Desktop\saptask\sap_services\loggingmicroservice\app\controller\TraceController.js [kcvu09cv] FATAL: logging supply & demad service

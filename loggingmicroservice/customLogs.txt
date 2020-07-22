@@ -1,3 +1,1 @@
-logging input staring message---
-#2.0#2020 07 21 12:13:52:932#+05:30#LOGGING SUPPLY & DEMAD SERVICE#/Application/Network#####kcvknzl0##########kcvknzl0#PLAIN###
-error occured in logging message...: {}
+#2.0#2020 07 21 15:54:05:605#+05:30#ERROR#/Application/supplyDemand#####kcvsj6jp##########kcvsj6jp#PLAIN##logging supply & demad service#
