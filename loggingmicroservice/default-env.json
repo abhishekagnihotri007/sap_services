@@ -8,15 +8,15 @@
                 "NODE_TLS_REJECT_UNAUTHORIZED": 0,
                 "name": "TRP!i9", "label": "xsuaa", "tags": [ "xsuaa" ],
                 "credentials": {
-                    "tenantmode": "dedicated",
-                    "clientid": "sb-sbx-uaa!i9",
-                    "verificationkey": "-----BEGIN PUBLIC KEY-----MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAv3vR3KxKOdweOwvfW0rcOm/zK7svbxjkw7lAPyI/y4zqOQsJaNAD0uprzd3KGHXMe8wokthxjEFzktcxd2ezDApADZJfXQu13QJcVsMPIW+Q5BActsvdfrIRlrV5B4CPrHWb/p3q+ngyXkI8CfRSig/aYbCKCb0BVcY64Zn+wRyrwiGzEH7mpQsz6gg/UBNbGEcK7vjbwsiWfcnbn2i78WjOcpdqFhvrxDdcqo6l/BL6P9d0TdshvzEXeGIgFQtoHgFeHcNnZDC7rXjYdvmM4Ej9fqOKYPYfc+vnCsxWI/2x60HDewNwoulS5cjsixp7mc+w7DPzDgeUSkqoSc8v3wIDAQAB-----END PUBLIC KEY-----",
-                    "xsappname": "sbx-uaa!i9",
-                    "identityzone": "uaa",
-                    "identityzoneid": "uaa",
-                    "clientsecret": "PkJXFmUhjrhfXl9/tKd2IQyCfM1H1GTDRg60afILChiCWUgcb+hRHwNjIpx6RlmT4POC9i9XDRCe\ng3dnMEElxw==",
-                    "url": "https://gcl0139.wdf.sap.corp:31032/uaa-security"
-                }
+					"tenantmode": "dedicated",
+					"clientid": "sb-na-0cb39efb-bdda-4bd8-8bbe-7669ba75dc4e!i9",
+					"verificationkey": "-----BEGIN PUBLIC KEY-----MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAv3vR3KxKOdweOwvfW0rcOm/zK7svbxjkw7lAPyI/y4zqOQsJaNAD0uprzd3KGHXMe8wokthxjEFzktcxd2ezDApADZJfXQu13QJcVsMPIW+Q5BActsvdfrIRlrV5B4CPrHWb/p3q+ngyXkI8CfRSig/aYbCKCb0BVcY64Zn+wRyrwiGzEH7mpQsz6gg/UBNbGEcK7vjbwsiWfcnbn2i78WjOcpdqFhvrxDdcqo6l/BL6P9d0TdshvzEXeGIgFQtoHgFeHcNnZDC7rXjYdvmM4Ej9fqOKYPYfc+vnCsxWI/2x60HDewNwoulS5cjsixp7mc+w7DPzDgeUSkqoSc8v3wIDAQAB-----END PUBLIC KEY-----",
+					"xsappname": "na-0cb39efb-bdda-4bd8-8bbe-7669ba75dc4e!i9",
+					"identityzone": "uaa",
+					"identityzoneid": "uaa",
+					"clientsecret": "0vH94XbNdGrTpcJ/KDlxlAUIbZG/vZv6EA8YyeH+PqTfKVhZkgcebluXXo3o9ttGrusq1U3qZ+mP\nlaBRJMZKYQ==",
+					"url": "https://gcl0139.wdf.sap.corp:31032/uaa-security"
+				}
             }
         ]
     }

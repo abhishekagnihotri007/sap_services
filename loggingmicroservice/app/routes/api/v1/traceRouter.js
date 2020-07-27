@@ -6,8 +6,8 @@ module.exports = {
      postLogData:  async function (req,res){
                     try{
 
-                    const tracectrlrObj = new TraceController(req,res);
-                    let postLogResult = await tracectrlrObj.postLogData();
+                   // const tracectrlrObj = new TraceController(req,res);
+                    let postLogResult = await TraceController.postLogData(req,res);
 
                     
                     prepareResponseObj.success = true;

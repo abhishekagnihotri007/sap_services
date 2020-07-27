@@ -2,59 +2,68 @@
 const express = require('express');
 const app = express();
 const logging = require('@sap/logging');
-const AppUtility = require('../util/AppUtility');
-const fs = require("fs");
+var  prepareResponseObj = require('../resources/response');
+//const fs = require("fs");
 
-const apputilObj = new AppUtility();
 
-class TraceController {
- 
-  constructor(reqdata) {
-     this.request = reqdata;
-     this.appContext = logging.createAppContext({req:reqdata});
-     app.use(logging.middleware({ appContext: this.appContext,logNetwork:false}));
-  }
 
-  async  postLogData() {
+  module.exports = {
+
+  async  postLogData(req,res) {
       try{
-         
-        let servityLevel;
-     
-        var tracer = this.appContext.createLogContext().getTracer(__filename);
-       // console.log('tracer--------',tracer);
-        tracer.info('Processing GET request to /demo');
-      var access = fs.createWriteStream('traceLog.txt');
-      process.stdout.write = process.stderr.write = access.write.bind(access);
-      process.stdout.pipe(access);
+       
       
-         switch(this.request.body.severtiLevel){
+        let servityLevel;
+        var appContext = logging.createAppContext({req:req});
+        app.use(logging.middleware({ appContext: appContext,logNetwork:true}));
+        var tracer = appContext.createLogContext().getTracer(__filename);
+       
+     /*   var access = fs.createWriteStream('traceLog.txt',{flags:'a'});
+        process.stdout.write = process.stderr.write = access.write.bind(access);
+        process.stdout.pipe(access);
+        
+        */
+
+        switch(req.body.severtiLevel){
            case 0:
-             servityLevel = 'info';
-             var infostring =  await tracer.info(this.request.body.message);
+             servityLevel = 'debug';
+             var infostring =  await tracer.debug(req.body.message);
              break;
-           case  1 :
+           case 1:
+             servityLevel = 'path';
+             var infostring =  await tracer.path(req.body.message);
+             break; 
+           case 2:
+              servityLevel = 'info';
+              var infostring =  await tracer.info(req.body.message);
+              break;        
+           case  3 :
             servityLevel = 'warning';
-            var infostring =  await tracer.warning(this.request.body.message);
+            var infostring =  await tracer.warning(req.body.message);
             break;
-          case  2 :
+          case  4 :
             servityLevel = 'error';
-            var infostring =  await tracer.error(this.request.body.message);
+            var infostring =  await tracer.error(req.body.message);
             break;
-          case  3 :
+          case  5 :
             servityLevel = 'fatal';  
-            var infostring =  await tracer.fatal(this.request.body.message);  
+            var infostring =  await tracer.fatal(req.body.message);  
             break;
           default : 
-           servityLevel = 'info';
-           var infostring =  await tracer.info(this.request.body.message);
+           servityLevel = 'debug';
+           var infostring =  await tracer.debug(req.body.message);
            break;
 
          }
-       
-       // await apputilObj.writeData(logPacket);
+
         return true;
       }catch (err){
        console.log('error  in tracing request ',err);
+       prepareResponseObj.success = false;
+       prepareResponseObj.message = message.exception;
+       prepareResponseObj.ExceptionMessage = JSON.stringify(err);
+       prepareResponseObj.status = "502";
+       res.status(502).json(prepareResponseObj);
 
       }
     
@@ -64,6 +73,3 @@ class TraceController {
 }
 
 
-
-
-module.exports = TraceController;

@@ -5,14 +5,11 @@ var  prepareResponseObj = require('../../../resources/response');
 module.exports = {
      postLogData:  async function (req,res){
                     try{
-
-                    const logerctrlrObj = new LoggerController(req,res);
-                    let postLogResult = await logerctrlrObj.postLogData();
-
-                    
+                    let postLogResult = await LoggerController.postLogData(req,res);
                     prepareResponseObj.success = true;
                     prepareResponseObj.message = 'message log successfully';
                     prepareResponseObj.status = "200";
+                    prepareResponseObj.data = 'message log successfully';
                     res.status(200).json(prepareResponseObj);  
                     }catch(err){
                         console.log(`error occured in logging message...: ${JSON.stringify(err)}`);
@@ -28,8 +25,8 @@ module.exports = {
         getLogData:  async function (req,res){
           try{
 
-          const logerctrlrObj = new LoggerController(req,res);
-          let postLogResult = await logerctrlrObj.getLogData();
+         // const logerctrlrObj = new LoggerController(req,res);
+          let postLogResult = await LoggerController.getLogData(req.res);
 
           
           prepareResponseObj.success = true;

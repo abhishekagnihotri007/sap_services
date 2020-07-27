@@ -10,9 +10,9 @@ const JWTStrategy = require('@sap/xssec').JWTStrategy;
 const xsHDBConn = require("@sap/hdbext");
 var routes = require('./routes/api/v1/indexRouter');
 const path = require('path');
-const fs = require('fs');
+
 const port = process.env.PORT || 3000;
-const approot = '/api/v1/';
+
 
 // parse application/json
 app.use(bodyParser.json());
@@ -57,7 +57,7 @@ app.use('/', routes);
 
 // If no route is matched by now, it must be a 404
 app.use(function(req, res, next) {
-    console.log(req.body);
+    console.log("received request body===: ",req.body);
     console.log({status:404,message:`NO ROUTE IS MATCHED: ${req.originalUrl} ,method ${req.method}`});
     res.status(404).end({status:404,message:`NO ROUTE IS MATCHED: ${req.originalUrl} ,method ${req.method}`});
 
