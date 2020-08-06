@@ -25,8 +25,8 @@ module.exports = {
         getLogData:  async function (req,res){
           try{
 
-         // const logerctrlrObj = new LoggerController(req,res);
-          let postLogResult = await LoggerController.getLogData(req.res);
+         console.log("inside getLogData---");
+          let postLogResult = await LoggerController.getLogData(req,res);
 
           
           prepareResponseObj.success = true;

@@ -14,6 +14,7 @@ const path = require('path');
 const port = process.env.PORT || 3000;
 
 
+
 // parse application/json
 app.use(bodyParser.json());
 // parse application/x-www-form-urlencoded
@@ -37,20 +38,21 @@ passport.use(
 //Add Passport JWT processing
 app.use(passport.initialize());
 
-
+/*
 app.use(
   //xsHDBConn.middleware(hanaOptions.hana),
   passport.authenticate("JWT", {
   session: false
   })
   );
-
+*/
 /*
 app.post('/test',  (req, res) => {
   res.send('Authenticated');
 });
 
 */
+
 
 app.use('/', routes);
 

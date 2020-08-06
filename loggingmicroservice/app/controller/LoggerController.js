@@ -3,11 +3,11 @@ const express = require('express');
 const app = express();
 const logging = require('@sap/logging');
 var  prepareResponseObj = require('../resources/response');
+const path = require('path');
 //const fs = require("fs");
+let TextBundle = require("@sap/textbundle").TextBundle;
 
-
-
-  module.exports = {
+module.exports = {
 
   async  postLogData(req,res) {
       try{
@@ -36,8 +36,6 @@ var  prepareResponseObj = require('../resources/response');
        case  2 :
          servityLevel = 'error';
          var infostring =  await logger.error(req.body.message);
-        // var infostring =  await logger.getLogString(req.body.message);  
-        // console.log("info--------",infostring);
          break;
        case  3 :
          servityLevel = 'fatal';  
@@ -65,11 +63,13 @@ var  prepareResponseObj = require('../resources/response');
   async getLogData(req,res){
 
     try{
-
-    //  var data =   await fs.readFileSync('./customLogs.txt', {encoding:'utf8', flag:'r'});
-        var data  = JSON.stringify(req.query); 
+        let mid = req.headers['mid'];
+        console.log("get locale data======",mid);
+        let bundle = new TextBundle("../i18n/messages", getLocale(req));
+        let data = bundle.getText(mid, ["333","log info from hana db"]);
         return data;
       }catch(err){
+        console.log("err in catch block of getLogData in controller--------------",err);
         prepareResponseObj.success = false;
         prepareResponseObj.message = message.exception;
         prepareResponseObj.ExceptionMessage = JSON.stringify(err);
@@ -78,7 +78,22 @@ var  prepareResponseObj = require('../resources/response');
     }
   }
 
-
 }
-
+function getLocale(req) {
+  let langparser = require("accept-language-parser");
+  let lang = req.headers["accepted-locale"];
+  if (!lang) {
+    return null;
+  }
+  let arr = langparser.parse(lang);
+  if (!arr || arr.length < 1) {
+    return null;
+  }
+  let locale = arr[0].code;
+  if (arr[0].region) {
+    locale += "_" + arr[0].region;
+  }
+ // console.log(JSON.stringify(req.headers)+"----------------"+locale+"----"+lang);
+  return locale;
+}
 
